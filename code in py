@@ -1,0 +1,39 @@
+import pygame
+import random
+from collections import deque
+
+# Initialize Pygame
+pygame.init()
+
+# Screen dimensions
+SCREEN_WIDTH = 1000
+SCREEN_HEIGHT = 700
+
+# Colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+GRAY = (200, 200, 200)
+
+# Screen setup
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("Traffic Management System")
+clock = pygame.time.Clock()
+
+# Load vehicle images
+ambulance_image = pygame.image.load("ambulance.jpeg")
+ambulance_image = pygame.transform.scale(ambulance_image, (50, 25))
+car_image = pygame.image.load("car.jpeg")
+car_image = pygame.transform.scale(car_image, (40, 20))
+
+# Traffic Light class
+class TrafficLight:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.state = "RED"  # RED, GREEN
+
+    def draw(self):
+        color = RED if self.state == "RED" else GREEN
+        pygame.draw.circle(screen, color, (self.x, self.y), 20)
